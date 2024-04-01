@@ -29,7 +29,8 @@ namespace NewsApi.Application.Services
             var news = new News(title, content, source, author, categoryId);
             await _newsRepository.InsertAsync(news);
             await _unitOfWork.SaveChangesAsync();
-            return NewsDto.Map(news);
+            var result = await _newsRepository.GetAsync(x => x.Id == news.Id).Include(x => x.Category).FirstOrDefaultAsync();
+            return NewsDto.Map(result);
         }
 
         public async Task<NewsDto> Update(int id, string title, string content, string source, string author,
@@ -40,7 +41,7 @@ namespace NewsApi.Application.Services
             {
                 return new NewsDto();
             }
-            var news = await _newsRepository.GetAsync(x => x.Id == id).FirstOrDefaultAsync();
+            var news = await _newsRepository.GetAsync(x => x.Id == id).Include(x => x.Category).FirstOrDefaultAsync();
             if (news == null)
             {
                 return new NewsDto();

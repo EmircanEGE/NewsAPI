@@ -41,7 +41,7 @@ namespace NewsApi.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("NewsApi.Core.Models.News", b =>
@@ -77,7 +77,7 @@ namespace NewsApi.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("News");
+                    b.ToTable("News", (string)null);
                 });
 
             modelBuilder.Entity("NewsApi.Core.Models.News", b =>

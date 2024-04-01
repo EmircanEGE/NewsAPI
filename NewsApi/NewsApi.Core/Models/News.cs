@@ -34,6 +34,7 @@ namespace NewsApi.Core.Models
             Source = source;
             Author = author;
             CategoryId = categoryId;
+            UpdatedDate = DateTime.UtcNow;
         }
     }
 }

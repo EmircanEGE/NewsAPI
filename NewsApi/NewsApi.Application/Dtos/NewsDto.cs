@@ -12,7 +12,7 @@ namespace NewsApi.Application.Dtos
         public DateTime CreatedDateTime { get; set; }
         public DateTime? UpdatedDateTime { get; set; }
         
-        public CategoryDto Category { get; set; }
+        public CategoryDto? Category { get; set; }
 
         public static NewsDto Map(News news)
         {
@@ -23,7 +23,7 @@ namespace NewsApi.Application.Dtos
                 Content = news.Content,
                 Source = news.Source,
                 Author = news.Author,
-                Category = CategoryDto.Map(news.Category),
+                Category = news.Category == null ? null : CategoryDto.Map(news.Category),
                 CreatedDateTime = news.CreatedDate,
                 UpdatedDateTime = news.UpdatedDate
             };
